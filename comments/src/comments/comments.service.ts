@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { FindManyOptions, Repository } from 'typeorm';
 import { CreateCommentDto } from './dto/create-comment.dto';
 import { UpdateCommentDto } from './dto/update-comment.dto';
 import { Comment } from './entities/comment.entity';
@@ -20,15 +20,19 @@ export class CommentsService {
     return await this.commentRepository.find();
   }
 
+  async find(options: FindManyOptions): Promise<Comment[]> {
+    return await this.commentRepository.find(options);
+  }
+
   async findOne(id: number): Promise<Comment> {
     return await this.commentRepository.findOne(id);
   }
 
   update(id: number, updateCommentDto: UpdateCommentDto) {
-    return `This action updates a #${id} post`;
+    return this.commentRepository.update(id, updateCommentDto);
   }
 
-  // remove(id: number): Promise<Comment> {
-  //   return this.commentRepository.remove(id);
-  // }
+  remove(id: number): Promise<any> {
+    return this.commentRepository.delete(id);
+  }
 }
