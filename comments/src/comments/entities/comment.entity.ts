@@ -6,7 +6,7 @@ export class Comment {
   id: number;
 
   @Column()
-  post_id: string;
+  post_id: number;
 
   @Column()
   text: string;
