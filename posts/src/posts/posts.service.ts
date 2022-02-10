@@ -24,10 +24,10 @@ export class PostsService {
   }
 
   update(id: number, updatePostDto: UpdatePostDto) {
-    return `This action updates a #${id} post`;
+    return this.postRepository.update(id, updatePostDto);
   }
 
-  // remove(id: number): Promise<Post> {
-  //   return this.postRepository.remove(id);
-  // }
+  remove(id: number): Promise<any> {
+    return this.postRepository.delete(id);
+  }
 }

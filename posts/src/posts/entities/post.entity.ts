@@ -10,4 +10,6 @@ export class Post {
 
   @Column()
   description: string;
+
+  comments: any[];
 }
